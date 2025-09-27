@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.dagger.hilt)
 }
 
 android {
@@ -56,4 +58,30 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    //Hilt
+    implementation(libs.hilt)
+    implementation(libs.androidx.hilt)
+    ksp(libs.hilt.android.compiler)
+
+    //Coroutines
+    implementation(libs.coroutines.core)
+    implementation(libs.coroutines.android)
+
+    //Retrofit
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.converter)
+
+    //Coil
+    implementation(libs.coil)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.svg)
+
+    //Lottie
+    implementation(libs.lottie)
+
+}
+
+ksp {
+    arg("hilt.enableAggregatingTask", "false")
 }
