@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.aagamshah.jarassignment.presentation.homescreen.HomeScreen
 import com.aagamshah.jarassignment.presentation.onboardingscreen.OnboardingScreen
 
 
@@ -15,7 +16,7 @@ fun AppNavigation() {
         navController = navController,
         startDestination = Screen.Onboarding.route
     ) {
-        composable(route = Screen.Onboarding.route) { OnboardingScreen() }
-        composable(route = Screen.Home.route) {}
+        composable(route = Screen.Onboarding.route) { OnboardingScreen(navController) }
+        composable(route = Screen.Home.route) { HomeScreen(navController) }
     }
 }

@@ -34,12 +34,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
 import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
 
 private const val ANIM_DURATION_MS = 700
 
@@ -64,6 +67,7 @@ fun OnboardingEducationCard(
         animationSpec = tween(ANIM_DURATION_MS)
     )
 
+    // Image size animates from 40.dp to 360.dp
     val imageSize by animateDpAsState(
         targetValue = if (isCardExpanded) 360.dp else collapsedImageSize,
         animationSpec = tween(ANIM_DURATION_MS)
@@ -162,8 +166,22 @@ fun OnboardingEducationCard(
 
 @Composable
 private fun ImageBlock(imageUri: String, size: Dp, cornerRadius: Dp, modifier: Modifier) {
+
+    val context = LocalContext.current
+
+    val maxImageSizePx = with(LocalResources.current.displayMetrics) {
+        (360.dp.value * density).toInt()
+    }
+
+    val imageRequest = remember(imageUri, context) {
+        ImageRequest.Builder(context)
+            .data(imageUri)
+            .size(maxImageSizePx)
+            .build()
+    }
+
     AsyncImage(
-        model = imageUri,
+        model = imageRequest,
         contentDescription = "Card Image",
         contentScale = ContentScale.Crop,
         modifier = modifier
