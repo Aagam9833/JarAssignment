@@ -1,5 +1,3 @@
-// OnboardingManualBuyMapperDTO.kt (Mapper for the new domain structure)
-
 package com.aagamshah.jarassignment.data.dto
 
 import com.aagamshah.jarassignment.data.response.CtaResponse

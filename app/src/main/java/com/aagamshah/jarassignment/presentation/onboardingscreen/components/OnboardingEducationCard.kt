@@ -67,7 +67,6 @@ fun OnboardingEducationCard(
         animationSpec = tween(ANIM_DURATION_MS)
     )
 
-    // Image size animates from 40.dp to 360.dp
     val imageSize by animateDpAsState(
         targetValue = if (isCardExpanded) 360.dp else collapsedImageSize,
         animationSpec = tween(ANIM_DURATION_MS)
