@@ -7,6 +7,7 @@ import com.aagamshah.jarassignment.common.Resource
 import com.aagamshah.jarassignment.domain.model.OnboardingModel
 import com.aagamshah.jarassignment.domain.usecase.GetOnboardingDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -33,6 +34,7 @@ class OnboardingViewModel @Inject constructor(
 
             when (result) {
                 is Resource.Success -> {
+                    delay(1000)
                     _state.value = result
                     Log.d("TAGGED", "loadOnboardingData: ${result.data}")
                 }

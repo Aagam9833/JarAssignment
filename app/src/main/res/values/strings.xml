@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">JarAssignment</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="onboarding">Onboarding</string>
 </resources>
